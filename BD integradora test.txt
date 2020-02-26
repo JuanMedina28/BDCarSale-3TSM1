@@ -1,0 +1,25 @@
+create database carsale;
+
+\c carsale;
+
+create table administrador(correo varchar primary key, nombre varchar(20) not null, apellido_paterno varchar(20) not null, apellido_materno varchar(20) not null, contraseña varchar(180) not null unique);
+
+create table cliente(correo varchar primary key, nombre varchar(20) not null, apellido_paterno varchar(20) not null, apellido_materno varchar(20) not null, contraseña varchar(180) not null unique);
+ 
+create table automovil(no_serie int primary key, marca varchar(20) not null, modelo varchar(20) not null, año int not null, color varchar(20) not null, transmision varchar(20) not null, no_puertas int not null, descripcion varchar(100) not null, precio NUMERIC(10,2) not null);
+
+create extension pgcrypto;
+
+insert into administrador values('gvite@carsale.com', 'Gerardo', 'Vite', 'San Juan', PGP_SYM_ENCRYPT('gvite2020','AES_KEY'));
+ 
+insert into cliente values('manuel.gutierrez.2506@gmail.com', 'Victor Manuel', 'Gutierrez', 'Benitez', PGP_SYM_ENCRYPT('mgut1994','AES_KEY'));
+ 
+insert into automovil values (1, 'Chevrolet', 'Aveo', 2019, 'Rojo', 'Manual', 5, 'Vehículo nuevo, paga a 2 o 5 años', 142000);
+ 
+insert into automovil values (2,'Chevrolet', 'Suburban', 2020, 'Negra', 'Automática', 5, 'Vehículo nuevo, paga a 2 o 5 años, blindaje nivel 3', 1980700);
+  
+insert into automovil values (3, 'Chevrolet', 'Camaro', 2020, 'Rojo', 'Automática', 3, 'Vehículo nuevo, paga a 2 o 5 años', 1250000);
+   
+insert into automovil values (4, 'Chevrolet', 'Spark', 2019, 'Azul', 'Manual', 5, 'Vehículo nuevo, paga a 2 o 5 años', 159000);
+
+insert into automovil values (5, 'Chevrolet', 'Malibu', 2020, 'Dorado', 'Automática', 5, 'Vehículo nuevo, paga a 2 o 5 años', 564000);
